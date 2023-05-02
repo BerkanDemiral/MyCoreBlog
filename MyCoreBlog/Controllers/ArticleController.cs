@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyCoreBlog.Services.Abstract;
 
 namespace MyCoreBlog.Controllers
 {
     public class ArticleController : Controller
     {
-        public IActionResult Index()
+        private readonly IArticleService _articleService;
+
+        public ArticleController(IArticleService articleService)
         {
-            return View();
+            _articleService = articleService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var Articles = await _articleService.GetAllArticlesAsync();
+            return View(Articles);
         }
     }
 }

@@ -1,5 +1,13 @@
-﻿
+﻿@using MyCoreBlog.DTOs.Article;
+
 @{
     ViewData["Title"] = "Article";
 }
-@model List<Article>
+@model List<ArticleDto>
+
+@foreach(var item in Model){
+    <h1>@item.ArticleTitle</h1>
+    <h3>@item.ArticleContent</h3>
+    <h3>@item.CreatedBy</h3>
+}
+

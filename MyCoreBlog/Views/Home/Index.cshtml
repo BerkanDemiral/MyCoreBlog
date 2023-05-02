@@ -1,8 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using MyCoreBlog.Entites.Entities;
+@{
+    ViewData["Title"] = "Admin Home Page";
 }
+@*@model List<Article>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@foreach (var item in Model)
+{
+    <h3>@item.ArticleTitle</h3>
+    <h1>@item.ArticleContent</h1>
+}
+*@
