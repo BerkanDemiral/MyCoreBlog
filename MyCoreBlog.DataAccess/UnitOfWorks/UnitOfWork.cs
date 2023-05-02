@@ -1,4 +1,6 @@
 ﻿using MyCoreBlog.DataAccess.Context;
+using MyCoreBlog.DataAccess.Repositories.Abstract;
+using MyCoreBlog.DataAccess.Repositories.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,24 +13,33 @@ namespace MyCoreBlog.DataAccess.UnitOfWorks
     {
         private readonly AppDbContext _context;
 
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
-
         public UnitOfWork(AppDbContext appDbContext)
         {
             _context = appDbContext;
         }
-
-        public void Commit()
+        public void DisposeAsync()
         {
-            _context.SaveChanges();
+            _context.Dispose();
         }
 
-        public async Task CommitAsync() // must be used %99 for performance of db and memmory
+        public int Save()
         {
-            await _context.SaveChangesAsync();
+            return _context.SaveChanges();
+        }
+
+        public async Task<int> SaveAsync()
+        {
+            return await _context.SaveChangesAsync();
+        }
+
+        ValueTask IAsyncDisposable.DisposeAsync()
+        {
+            return _context.DisposeAsync();
+        }
+
+        IGenericRepository<T> IUnitOfWork.GetRepository<T>()
+        {
+            return new GenericRepository<T>(_context);
         }
     }
 }
