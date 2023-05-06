@@ -5,10 +5,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin2 </title>
+    <title>Admin Panel</title>
     <!-- plugins:css -->
 
     <link rel="stylesheet" href="~/admin_template/template/vendors/feather/feather.css">
+    <link href="~/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/font-awesome/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/admin_template/template/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/admin_template/template/vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="~/admin_template/template/vendors/typicons/typicons.css">
@@ -21,6 +23,8 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="~/admin_template/template/css/vertical-layout-light/style.css">
+
+    <link href="~/cdn/datatable.css" rel="stylesheet" />
     <!-- endinject -->
     <link rel="shortcut icon" href="~/admin_template/template/images/favicon.png" />
 </head>
@@ -47,52 +51,13 @@
             <div class="navbar-menu-wrapper d-flex align-items-top">
                 <ul class="navbar-nav">
                     <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                        <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">John Doe</span></h1>
-                        <h3 class="welcome-sub-text">Your performance summary this week </h3>
+                        <h1 class="welcome-text">Hoşgeldin, <span class="text-black fw-bold">John Doe</span></h1>
+                        <h3 class="welcome-sub-text">Siteye yönelik düzenleme ve incelemeleri bu ekranda yapabilirsin... </h3>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown d-none d-lg-block">
-                        <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"> Select Category </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
-                            <a class="dropdown-item py-3">
-                                <p class="mb-0 font-weight-medium float-left">Select category</p>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-item-content flex-grow py-2">
-                                    <p class="preview-subject ellipsis font-weight-medium text-dark">Bootstrap Bundle </p>
-                                    <p class="fw-light small-text mb-0">This is a Bundle featuring 16 unique dashboards</p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-item-content flex-grow py-2">
-                                    <p class="preview-subject ellipsis font-weight-medium text-dark">Angular Bundle</p>
-                                    <p class="fw-light small-text mb-0">Everything you’ll ever need for your Angular projects</p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-item-content flex-grow py-2">
-                                    <p class="preview-subject ellipsis font-weight-medium text-dark">VUE Bundle</p>
-                                    <p class="fw-light small-text mb-0">Bundle of 6 Premium Vue Admin Dashboard</p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-item-content flex-grow py-2">
-                                    <p class="preview-subject ellipsis font-weight-medium text-dark">React Bundle</p>
-                                    <p class="fw-light small-text mb-0">Bundle of 8 Premium React Admin Dashboard</p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item d-none d-lg-block">
-                        <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
-                            <span class="input-group-addon input-group-prepend border-right">
-                                <span class="icon-calendar input-group-text calendar-icon"></span>
-                            </span>
-                            <input type="text" class="form-control">
-                        </div>
-                    </li>
+
+
                     <li class="nav-item">
                         <form class="search-form" action="#">
                             <i class="icon-search"></i>
@@ -189,9 +154,7 @@
                             </div>
                             <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
                             <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
-                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
-                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                            <a class="dropdown-item" asp-controller="Auth" asp-action="Logout"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
                         </div>
                     </li>
                 </ul>
@@ -376,62 +339,29 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
                             <i class="mdi mdi-grid-large menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
+                            <span class="menu-title">Ana Sayfa</span>
                         </a>
                     </li>
-                    <li class="nav-item nav-category">UI Elements</li>
+                    <li class="nav-item nav-category  me-2">Sayfalar</li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                            <i class="menu-icon mdi mdi-floor-plan"></i>
-                            <span class="menu-title">UI Elements</span>
-                            <i class="menu-arrow"></i>
+                        <a class="nav-link" asp-area="Admin" asp-controller="Article" asp-action="Index">
+                            <i class="menu-icon mdi mdi-file-document"></i>
+                            <span class="menu-title">Makaleler</span>
                         </a>
-                        <div class="collapse" id="ui-basic">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item nav-category">Forms and Datas</li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-                            <i class="menu-icon mdi mdi-card-text-outline"></i>
-                            <span class="menu-title">Form elements</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="form-elements">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
-                            </ul>
-                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-                            <i class="menu-icon mdi mdi-chart-line"></i>
-                            <span class="menu-title">Charts</span>
-                            <i class="menu-arrow"></i>
+                        <a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index">
+                            <i class="menu-icon fa-sharp fa-regular fa-folder-open"></i>
+                            <span class="menu-title">Kategoriler</span>
                         </a>
-                        <div class="collapse" id="charts">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
-                            </ul>
-                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                            <i class="menu-icon mdi mdi-table"></i>
-                            <span class="menu-title">Tables</span>
-                            <i class="menu-arrow"></i>
+                        <a class="nav-link" asp-area="Admin" asp-controller="Image" asp-action="Index">
+                            <i class="menu-icon mdi mdi-access-point"></i>
+                            <span class="menu-title">Medya Düzenleme</span>
                         </a>
-                        <div class="collapse" id="tables">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
-                            </ul>
-                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
@@ -445,26 +375,31 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item nav-category">pages</li>
+                    <li class="nav-item nav-category me-2">Kullanıcı/Admin</li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                             <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                            <span class="menu-title">User Pages</span>
+                            <span class="menu-title">Kullanıcı Arayüzü</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="auth">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Auth" asp-action="Login"> Giriş </a></li>
+                            </ul>
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Auth" asp-action="Login"> Rol Yönetimi </a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item nav-category">help</li>
+
+                    <li class="nav-item nav-category">Ayarlar</li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
-                            <i class="menu-icon mdi mdi-file-document"></i>
-                            <span class="menu-title">Documentation</span>
+                        <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                            <i class="menu-icon fa-sharp fa-solid fa-gear"></i>
+                            <span class="menu-title">SMTP Ayarları</span>
                         </a>
                     </li>
+
                 </ul>
             </nav>
             <!-- partial -->
@@ -492,8 +427,17 @@
     <script src="~/admin_template/template/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
+
+
     <script src="~/admin_template/template/js/dashboard.js"></script>
     <script src="~/admin_template/template/js/Chart.roundedBarCharts.js"></script>
+
+    <script src="~/cdn/datatablemin.js"></script>
+    <script src="~/cdn/datatablesmin2.js"></script>
+    <script src="~/cdn/datatablesbuttons.js"></script>
+
+    @await RenderSectionAsync("Scripts",false);
+
     <!-- End custom js for this page-->
 </body>
 

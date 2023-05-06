@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MyCoreBlog.DataAccess.Context
 {
-    public class AppDbContext : IdentityDbContext<AppUserClaim,AppRole,Guid,AppUserClaim,AppUserRole,AppUserLogin,AppRoleClaim,AppUserToken>
+    public class AppDbContext : IdentityDbContext<AppUser,AppRole,Guid,AppUserClaim,AppUserRole,AppUserLogin,AppRoleClaim,AppUserToken>
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {

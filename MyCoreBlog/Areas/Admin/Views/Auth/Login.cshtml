@@ -1,5 +1,73 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Auth";
+    Layout = null; /*Bu sayfa bir Home _Layout'a bağlı olmasın diye belirtmiş olduk.*/
 }
+@model UserLoginDto
+<!doctype html>
+<html lang="en">
+<head>
+	<title>@ViewData["Title"]</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link href="~/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/font-awesome/css/all.css" rel="stylesheet" />
+
+	<link rel="stylesheet" href="~/login_template/css/style.css">
+
+</head>
+<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Login</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-5">
+					<div class="login-wrap p-4 p-md-5">
+						<div class="icon d-flex align-items-center justify-content-center">
+							<i class="fa-solid fa-user"></i>
+						</div>
+						<h3 class="text-center mb-4">Have an account?</h3>
+						<form asp-controller="Auth" asp-action="Login" class="login-form" method="POST">
+							<div asp-validation-summary="All"></div>
+							<div class="form-group">
+								<input asp-for="Email" type="email" class="form-control rounded-left" placeholder="abcxyz@gmail.com" required>
+							</div>
+							<div class="form-group d-flex">
+								<input asp-for="Password" type="password" class="form-control rounded-left" placeholder="A1b5c65*" required>
+							</div>
+							<div class="form-group d-md-flex">
+								<div class="w-50">
+									<label asp-for="RememberMe" class="checkbox-wrap checkbox-primary">
+										Beni Hatırla
+										<input asp-for="RememberMe" type="checkbox" checked>
+										<span class="checkmark"></span>
+									</label>
+								</div>
+								<div class="w-50 text-md-right">
+									<a href="#">Parolamı Unuttum</a>
+								</div>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary rounded submit p-3 px-5">Login</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="~/login_template/js/jquery.min.js"></script>
+	<script src="~/login_template/js/popper.js"></script>
+	<script src="~/login_template/js/bootstrap.min.js"></script>
+	<script src="~/login_template/js/main.js"></script>
+
+</body>
+</html>
+

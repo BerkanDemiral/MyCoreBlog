@@ -14,7 +14,7 @@ namespace MyCoreBlog.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var Articles = await _articleService.GetAllArticlesAsync();
+            var Articles = await _articleService.GetAllArticlesWithCategoryAsync();
             return View(Articles);
         }
     }

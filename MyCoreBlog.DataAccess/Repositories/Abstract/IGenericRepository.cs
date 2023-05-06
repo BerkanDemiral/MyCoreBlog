@@ -12,7 +12,8 @@ namespace MyCoreBlog.DataAccess.Repositories.Abstract
         Task AddAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task DeleteAsync(T entity);
-        Task<List<T>> GetAllAsync(Expression<Func<T,bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties);
+        Task<List<T>> GetAllActiveAsync(Expression<Func<T,bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties);
+        Task<List<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties);
         Task<T> GetByIdAsyncs(int id);
         Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
 

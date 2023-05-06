@@ -8,18 +8,15 @@ namespace MyCoreBlog.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IArticleService _articleService;
 
-        public HomeController(ILogger<HomeController> logger, IArticleService articleService)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _articleService = articleService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var Articles = await _articleService.GetAllArticlesAsync();
-            return View(Articles);
+            return View();
         }
 
         public IActionResult Privacy()

@@ -22,9 +22,16 @@ namespace MyCoreBlog.Services.Concrete
             _mapper = mapper;
         }
 
-        public async Task<List<ArticleDto>> GetAllArticlesAsync()
+        public async Task<List<ArticleDto>> GetAllArticlesWithCategoryAsync()
         {
-            var articles = await _unitOfWork.GetRepository<Article>().GetAllAsync();
+            var articles = await _unitOfWork.GetRepository<Article>().GetAllAsync(x=>x.Category);
+            var mappedArticles = _mapper.Map<List<ArticleDto>>(articles);
+            return mappedArticles;
+        }
+
+        public async Task<List<ArticleDto>> GetAllArticlesWithCategoryNotDeletedAsync()
+        {
+            var articles = await _unitOfWork.GetRepository<Article>().GetAllActiveAsync(x=>!x.isDeleted, x=>x.Category);
             var mappedArticles = _mapper.Map<List<ArticleDto>>(articles);
             return mappedArticles;
         }

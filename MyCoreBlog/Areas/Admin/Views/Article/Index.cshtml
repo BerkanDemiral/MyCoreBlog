@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Article";
+}
+@model List<ArticleDto>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Makale </title>
+
+</head>
+
+<body>
+
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Makale Yönetimi</h4>
+                        </div>
+                        <div class="col-lg-12 grid-margin stretch-card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table" id="articlesTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Başlık</th>
+                                                <th>Kategori</th>
+                                                <th>Oluşturulma Tarihi</th>
+                                                <th>Oluşturan</th>
+                                                <th>Durum</th>
+                                                <th>İşlemler</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody cite="table-border-bottom-0">
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr name="@item.Id">
+                                                    <th>@item.ArticleTitle</th>
+                                                    <th>@item.Category.CategoryName</th>
+                                                    <th>@item.CreatedDate.ToShortDateString()</th>
+                                                    <th>@item.CreatedBy</th>
+                                                    <th>@(item.isDeleted ? "Aktif" : "Pasif")</th>
+                                                </tr>
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+
+@section Scripts{
+    <script src="../wwwroot/cdn/dataTableTurkish.js" type="application/ecmascript"></script>
+}

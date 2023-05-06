@@ -45,7 +45,7 @@ namespace MyCoreBlog.DataAccess.Repositories.Concrete
 
         }
 
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties)
+        public async Task<List<T>> GetAllActiveAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = Table;
             if(predicate != null)
@@ -55,6 +55,20 @@ namespace MyCoreBlog.DataAccess.Repositories.Concrete
             if(includeProperties.Any())
             {
                 foreach(var item in includeProperties)
+                {
+                    query = query.Include(item);
+                }
+            }
+
+            return await query.ToListAsync();
+        }
+
+        public async Task<List<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = Table;
+            if (includeProperties.Any())
+            {
+                foreach (var item in includeProperties)
                 {
                     query = query.Include(item);
                 }

@@ -11,6 +11,7 @@ namespace MyCoreBlog.Services.Abstract
 {
     public interface IArticleService
     {
-        Task<List<ArticleDto>> GetAllArticlesAsync();
+        Task<List<ArticleDto>> GetAllArticlesWithCategoryAsync();
+        Task<List<ArticleDto>> GetAllArticlesWithCategoryNotDeletedAsync();
     }
 }
