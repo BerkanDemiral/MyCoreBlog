@@ -9,6 +9,13 @@ namespace MyCoreBlog.Entites.Entities
 {
     public class Category : BaseEntity
     {
+        public Category() { }
+
+        public Category(string categoryName, ICollection<Article> articles)
+        {
+            CategoryName = categoryName;
+        }
+
         public string CategoryName { get; set; }
         public ICollection<Article> Articles { get; set; }
     }

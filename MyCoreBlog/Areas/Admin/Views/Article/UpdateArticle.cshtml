@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "UpdateArticle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model ArticleUpdateDto
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Makale Güncelle</h2>
+
+                        <form asp-area="Admin" asp-controller="Article" asp-action="UpdateArticle" class="forms-sample" enctype="multipart/form-data">
+                           <input type="hidden" asp-for="Id"/>@* Görünmeyecek ama update işlemlerinde Güncellenen article'nin id'sini almak için kullanılacak*@
+                            <div class="form-group">
+                                <label asp-for="CategoryId">Kategori</label>
+                                <select id="CategoryList" class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","CategoryName"))"></select>
+                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ArticleTitle">Makale Başlığı</label>
+                                <input asp-for="ArticleTitle" type="text" class="form-control" id="exampleInputName1">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ArticleContent">Makale İçeriği</label>
+                                <textarea asp-for="ArticleContent" type="text" class="form-control" style="min-height:300px;"></textarea>
+                            </div>
+                            @*                            <div class="form-group">
+                            <label>Görsel Ekle</label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                            <input type="text" class="form-control file-upload-info" disabled="" placeholder="Görsel Ekle">
+                            <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
+                            </span>
+                            </div>
+                            </div>*@
+                            <button type="submit" class="btn btn-danger me-2">Güncelle</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

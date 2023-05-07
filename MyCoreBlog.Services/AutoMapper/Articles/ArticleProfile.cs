@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyCoreBlog.DTOs.Article;
+using MyCoreBlog.Entites.DTOs.Article;
 using MyCoreBlog.Entites.Entities;
 
 namespace MyCoreBlog.Services.AutoMapper.Articles
@@ -9,6 +10,10 @@ namespace MyCoreBlog.Services.AutoMapper.Articles
         public ArticleProfile()
         {
             CreateMap<ArticleDto, Article>().ReverseMap();
+            CreateMap<ArticleAddDto, Article>().ReverseMap();
+            CreateMap<ArticleUpdateDto, ArticleDto>().ReverseMap();
+            CreateMap<ArticleUpdateDto, Article>().ReverseMap();
+
         }
     }
 }

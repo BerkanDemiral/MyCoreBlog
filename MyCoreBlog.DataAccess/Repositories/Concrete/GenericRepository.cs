@@ -45,6 +45,8 @@ namespace MyCoreBlog.DataAccess.Repositories.Concrete
 
         }
 
+
+
         public async Task<List<T>> GetAllActiveAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = Table;
@@ -77,7 +79,30 @@ namespace MyCoreBlog.DataAccess.Repositories.Concrete
             return await query.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsyncs(int id)
+        public async Task<T> GetAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = Table;
+            query = query.Where(predicate);
+
+            if (includeProperties.Any())
+                foreach (var item in includeProperties)
+                    query = query.Include(item);
+
+            return await query.SingleAsync();
+        }
+        public async Task<T> GetActiveAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = Table;
+            query = query.Where(predicate);
+
+            if (includeProperties.Any())
+                foreach (var item in includeProperties)
+                    query = query.Include(item);
+
+            return await query.SingleAsync();
+        }
+
+        public async Task<T> GetByIdAsyncs(Guid id)
         {
             return await Table.FindAsync(id);
         }

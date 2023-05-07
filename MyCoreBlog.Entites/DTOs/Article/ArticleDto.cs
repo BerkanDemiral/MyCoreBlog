@@ -7,6 +7,7 @@ namespace MyCoreBlog.DTOs.Article
     {
         public Guid Id { get; set; }
         public string ArticleTitle { get; set; }
+        public string ArticleContent { get; set; }
         public CategoryDto Category { get; set; }
         public virtual DateTime CreatedDate { get; set; } 
         public virtual string CreatedBy { get; set; }

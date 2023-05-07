@@ -16,6 +16,7 @@ namespace MyCoreBlog.Services.Extensions
         {
             var assembly = Assembly.GetExecutingAssembly(); // mevcut katmanı alıyoruz.
             services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<ICategoryService, CategoryService>();
             services.AddAutoMapper(assembly); // tüm automapperler ile dependectInjection yapısını kurar.
             return services;
 
